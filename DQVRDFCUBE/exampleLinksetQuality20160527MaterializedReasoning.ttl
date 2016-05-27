@@ -1,0 +1,1031 @@
+@prefix : <http://www.semanticweb.org/bubu/ontologies/2016/4/27/untitled-ontology-42#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/bubu/ontologies/2016/4/27/untitled-ontology-42> .
+
+<http://www.semanticweb.org/bubu/ontologies/2016/4/27/untitled-ontology-42> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+###  http://purl.org/dc/terms/contributor
+
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/created
+
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/creator
+
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/description
+
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/modified
+
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/publisher
+
+<http://purl.org/dc/terms/publisher> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/title
+
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/type
+
+<http://purl.org/dc/terms/type> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/linked-data/cube#attribute
+
+<http://purl.org/linked-data/cube#attribute> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/linked-data/cube#component
+
+<http://purl.org/linked-data/cube#component> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/linked-data/cube#componentAttachment
+
+<http://purl.org/linked-data/cube#componentAttachment> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/linked-data/cube#dataSet
+
+<http://purl.org/linked-data/cube#dataSet> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/linked-data/cube#dimension
+
+<http://purl.org/linked-data/cube#dimension> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/linked-data/cube#measure
+
+<http://purl.org/linked-data/cube#measure> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/linked-data/cube#structure
+
+<http://purl.org/linked-data/cube#structure> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/vocab/vann/usageNote
+
+<http://purl.org/vocab/vann/usageNote> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://rdfs.org/ns/void#linkPredicate
+
+<http://rdfs.org/ns/void#linkPredicate> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://rdfs.org/ns/void#target
+
+<http://rdfs.org/ns/void#target> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#closeMatch
+
+<http://www.w3.org/2004/02/skos/core#closeMatch> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+
+<http://www.w3.org/2004/02/skos/core#definition> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+
+<http://www.w3.org/2004/02/skos/core#prefLabel> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/ns/dqv#expectedDataType
+
+<http://www.w3.org/ns/dqv#expectedDataType> rdfs:label "expected data type"@en ;
+                                            
+                                            rdfs:comment "Represents the expected data type for metric's observed value (e.g. xsd:boolean, xsd:double etc...)"@en .
+
+
+
+###  http://www.w3.org/ns/dqv#hasObservation
+
+<http://www.w3.org/ns/dqv#hasObservation> rdf:type owl:AnnotationProperty .
+
+
+
+###  http://xmlns.com/foaf/0.1/homepage
+
+<http://xmlns.com/foaf/0.1/homepage> rdf:type owl:AnnotationProperty .
+
+
+
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
+
+
+###  http://www.w3.org/2001/XMLSchema#date
+
+xsd:date rdf:type rdfs:Datatype .
+
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://example.org/onProperty
+
+<http://example.org/onProperty> rdf:type owl:ObjectProperty ;
+                                
+                                rdfs:range rdf:Property ;
+                                
+                                rdfs:domain <http://www.w3.org/ns/dqv#QualityMeasurement> .
+
+
+
+###  http://purl.org/eis/vocab/daq#hasDimension
+
+<http://purl.org/eis/vocab/daq#hasDimension> rdf:type owl:ObjectProperty ;
+                                             
+                                             owl:inverseOf <http://www.w3.org/ns/dqv#inCategory> .
+
+
+
+###  http://www.w3.org/ns/dqv#computedOn
+
+<http://www.w3.org/ns/dqv#computedOn> rdf:type owl:ObjectProperty ;
+                                      
+                                      rdfs:range rdfs:Resource ;
+                                      
+                                      rdfs:domain <http://www.w3.org/ns/dqv#QualityMeasurement> ;
+                                      
+                                      owl:inverseOf <http://www.w3.org/ns/dqv#hasQualityMeasurement> .
+
+
+
+###  http://www.w3.org/ns/dqv#hasQualityMeasurement
+
+<http://www.w3.org/ns/dqv#hasQualityMeasurement> rdf:type owl:ObjectProperty ;
+                                                 
+                                                 rdfs:label "has quality measurement"@en ;
+                                                 
+                                                 rdfs:comment "Refers to the performed quality measurements. Quality measurements can be performed to any kind of resource (e.g., a dataset, a linkset, a graph, a set of triples). However, in the DQV context, this property is generally expected to be used in statements in which subjects are instances of dcat:Dataset and dcat:Distribution."@en ;
+                                                 
+                                                 rdfs:range <http://www.w3.org/ns/dqv#QualityMeasurement> .
+
+
+
+###  http://www.w3.org/ns/dqv#inCategory
+
+<http://www.w3.org/ns/dqv#inCategory> rdf:type owl:ObjectProperty ;
+                                      
+                                      rdfs:label "in category"@en ;
+                                      
+                                      <http://purl.org/vocab/vann/usageNote> "Categories are meant to systematically organize dimensions. The Data Quality Vocabulary defines no specific cardinality constraints for dqv:inCategory, since distinct quality frameworks might have different perspectives over a dimension. A dimension may therefore be associated to more than one category. However, those who define new quality metrics should try to avoid this as much as possible and assign only one category to the dimensions they define."@en ;
+                                      
+                                      rdfs:comment "Represents the category a dimension is grouped in."@en ;
+                                      
+                                      rdfs:range <http://www.w3.org/ns/dqv#Category> ;
+                                      
+                                      rdfs:domain <http://www.w3.org/ns/dqv#Dimension> .
+
+
+
+###  http://www.w3.org/ns/dqv#inDimension
+
+<http://www.w3.org/ns/dqv#inDimension> rdf:type owl:ObjectProperty ;
+                                       
+                                       rdfs:label "in dimension"@en ;
+                                       
+                                       <http://purl.org/vocab/vann/usageNote> "Dimensions are meant to systematically organize metrics. The Data Quality Vocabulary define no specific cardinality constraints for dqv:hasDimension, since distinct quality frameworks might have different perspectives over a metric. A metric may therefore be associated to more than one dimension. However, those who define new quality measures should try to avoid this as much as possible and assign only one dimension to the metrics they define."@en ;
+                                       
+                                       rdfs:comment "Represents the dimension a metric allows a measurement of."@en ;
+                                       
+                                       rdfs:range <http://www.w3.org/ns/dqv#Dimension> .
+
+
+
+###  http://www.w3.org/ns/dqv#isMeasurementOf
+
+<http://www.w3.org/ns/dqv#isMeasurementOf> rdf:type owl:ObjectProperty ;
+                                           
+                                           rdfs:domain <http://purl.org/linked-data/cube#Observation> ;
+                                           
+                                           rdfs:range <http://www.w3.org/ns/dqv#Metric> .
+
+
+
+###  http://www.w3.org/ns/oa#motivation
+
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://example.org/onLanguage
+
+<http://example.org/onLanguage> rdf:type owl:DatatypeProperty ;
+                                
+                                rdfs:range xsd:string ;
+                                
+                                rdfs:domain <http://www.w3.org/ns/dqv#QualityMeasurement> .
+
+
+
+###  http://purl.org/dc/terms/date
+
+<http://purl.org/dc/terms/date> rdf:type owl:DatatypeProperty ;
+                                
+                                rdfs:range xsd:date .
+
+
+
+###  http://www.w3.org/ns/dqv#value
+
+<http://www.w3.org/ns/dqv#value> rdf:type owl:DatatypeProperty ;
+                                 
+                                 rdfs:domain <http://www.w3.org/ns/dqv#QualityMeasurement> .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://purl.org/eis/vocab/daq#Category
+
+<http://purl.org/eis/vocab/daq#Category> rdf:type owl:Class ;
+                                         
+                                         owl:equivalentClass <http://www.w3.org/ns/dqv#Category> ;
+                                         
+                                         rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+
+###  http://purl.org/eis/vocab/daq#Dimension
+
+<http://purl.org/eis/vocab/daq#Dimension> rdf:type owl:Class ;
+                                          
+                                          owl:equivalentClass <http://www.w3.org/ns/dqv#Dimension> ;
+                                          
+                                          rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+
+###  http://purl.org/eis/vocab/daq#Metric
+
+<http://purl.org/eis/vocab/daq#Metric> rdf:type owl:Class ;
+                                       
+                                       owl:equivalentClass <http://www.w3.org/ns/dqv#Metric> .
+
+
+
+###  http://purl.org/eis/vocab/daq#Observation
+
+<http://purl.org/eis/vocab/daq#Observation> rdf:type owl:Class ;
+                                            
+                                            owl:equivalentClass <http://www.w3.org/ns/dqv#QualityMeasurement> ;
+                                            
+                                            rdfs:subClassOf <http://purl.org/linked-data/cube#Observation> .
+
+
+
+###  http://purl.org/eis/vocab/daq#QualityGraph
+
+<http://purl.org/eis/vocab/daq#QualityGraph> rdf:type owl:Class ;
+                                             
+                                             owl:equivalentClass <http://www.w3.org/ns/dqv#QualityMeasurementDataset> ;
+                                             
+                                             rdfs:subClassOf <http://purl.org/linked-data/cube#DataSet> .
+
+
+
+###  http://purl.org/linked-data/cube#DataSet
+
+<http://purl.org/linked-data/cube#DataSet> rdf:type owl:Class .
+
+
+
+###  http://purl.org/linked-data/cube#DataStructureDefinition
+
+<http://purl.org/linked-data/cube#DataStructureDefinition> rdf:type owl:Class .
+
+
+
+###  http://purl.org/linked-data/cube#DimensionProperty
+
+<http://purl.org/linked-data/cube#DimensionProperty> rdf:type owl:Class .
+
+
+
+###  http://purl.org/linked-data/cube#MeasureProperty
+
+<http://purl.org/linked-data/cube#MeasureProperty> rdf:type owl:Class .
+
+
+
+###  http://purl.org/linked-data/cube#Observation
+
+<http://purl.org/linked-data/cube#Observation> rdf:type owl:Class .
+
+
+
+###  http://purl.org/vocommons/voaf#Vocabulary
+
+<http://purl.org/vocommons/voaf#Vocabulary> rdf:type owl:Class .
+
+
+
+###  http://rdfs.org/ns/void#Linkset
+
+<http://rdfs.org/ns/void#Linkset> rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#Property
+
+rdf:Property rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/2000/01/rdf-schema#Resource
+
+rdfs:Resource rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/2002/07/owl#DataProperty
+
+owl:DataProperty rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+
+<http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/2004/03/trix/rdfg-1/Graph
+
+<http://www.w3.org/2004/03/trix/rdfg-1/Graph> rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/ns/dcat#Dataset
+
+<http://www.w3.org/ns/dcat#Dataset> rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/ns/dqv#Category
+
+<http://www.w3.org/ns/dqv#Category> rdf:type owl:Class ;
+                                    
+                                    rdfs:label "Category"@en ;
+                                    
+                                    rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                    
+                                    rdfs:comment "Represents a group of quality dimensions in which a common type of information is used as quality indicator."@en .
+
+
+
+###  http://www.w3.org/ns/dqv#Dimension
+
+<http://www.w3.org/ns/dqv#Dimension> rdf:type owl:Class ;
+                                     
+                                     rdfs:label "Dimension"@en ;
+                                     
+                                     rdfs:subClassOf <http://www.w3.org/2004/02/skos/core#Concept> ;
+                                     
+                                     rdfs:comment "Represents criteria relevant for assessing quality. Each quality dimension must have one or more metric to measure it. A dimension is linked with a category using the dqv:inDimension property."@en .
+
+
+
+###  http://www.w3.org/ns/dqv#Metric
+
+<http://www.w3.org/ns/dqv#Metric> rdf:type owl:Class ;
+                                  
+                                  rdfs:label "Metric"@en ;
+                                  
+                                  rdfs:comment "A standard to measure a quality dimension. An observation (instance of dqv:QualityMeasurement) assigns a value in a given unit to a Metric."@en .
+
+
+
+###  http://www.w3.org/ns/dqv#QualityAnnotation
+
+<http://www.w3.org/ns/dqv#QualityAnnotation> rdf:type owl:Class ;
+                                             
+                                             rdfs:label "Quality Annotation"@en ;
+                                             
+                                             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://www.w3.org/ns/oa#motivation> ;
+                                                                   owl:hasValue <http://www.w3.org/ns/dqv#qualityAssessment>
+                                                                 ] ;
+                                             
+                                             rdfs:subClassOf <http://www.w3.org/ns/oa#Annotation> ;
+                                             
+                                             rdfs:comment "Represents quality annotations, including rating, quality certificate, feedback that can be associated to datasets or distributions. Quality annotations must have one oa:motivatedBy statement with an instance of oa:Motivation (and skos:Concept), which reflects a quality assessment purpose. We define this instance as dqv:qualityAssessment."@en .
+
+
+
+###  http://www.w3.org/ns/dqv#QualityCertificate
+
+<http://www.w3.org/ns/dqv#QualityCertificate> rdf:type owl:Class ;
+                                              
+                                              rdfs:label "Quality certificate"@en ;
+                                              
+                                              rdfs:subClassOf <http://www.w3.org/ns/dqv#QualityAnnotation> ;
+                                              
+                                              rdfs:comment "Represents annotations that associate datasets or distributions to quality certificate."@en .
+
+
+
+###  http://www.w3.org/ns/dqv#QualityMeasurement
+
+<http://www.w3.org/ns/dqv#QualityMeasurement> rdf:type owl:Class ;
+                                              
+                                              rdfs:label "Quality Measurement"@en ;
+                                              
+                                              rdfs:subClassOf <http://purl.org/linked-data/cube#Observation> ;
+                                              
+                                              rdfs:comment "A quality measurement represents the evaluation of a given dataset (or dataset distribution) against a specific quality metric."@en .
+
+
+
+###  http://www.w3.org/ns/dqv#QualityMeasurementDataset
+
+<http://www.w3.org/ns/dqv#QualityMeasurementDataset> rdf:type owl:Class ;
+                                                     
+                                                     rdfs:label "Quality Measurement Dataset"@en ;
+                                                     
+                                                     rdfs:subClassOf <http://purl.org/linked-data/cube#DataSet> ;
+                                                     
+                                                     rdfs:comment "Represents a dataset of quality measurements, evaluations of a given dataset (or dataset distribution) against a specific quality metric."@en .
+
+
+
+###  http://www.w3.org/ns/dqv#QualityMetadata
+
+<http://www.w3.org/ns/dqv#QualityMetadata> rdf:type owl:Class ;
+                                           
+                                           rdfs:label "Quality Metadata"@en ;
+                                           
+                                           rdfs:subClassOf <http://www.w3.org/2004/03/trix/rdfg-1/Graph> ;
+                                           
+                                           <http://purl.org/vocab/vann/usageNote> "QualityMetadata containers do not necessary include all types of quality statements DQV can support. Implementers decide the granularity of containment. In the current version of DQV, we also leave open the choice of the containment technique. Implementers can use (RDF) graph containment. They may also use a dedicated property of their choice to link instances of dqv:QualityMetadata with instances of other DQV classes. For example using (a subproperty of) dcterms:hasPart"@en ;
+                                           
+                                           rdfs:comment "Represents quality metadata, it is defined to group quality certificates, policies, measurements and annotations under a named graph."@en .
+
+
+
+###  http://www.w3.org/ns/dqv#UserQualityFeedback
+
+<http://www.w3.org/ns/dqv#UserQualityFeedback> rdf:type owl:Class ;
+                                               
+                                               rdfs:label "User Quality feedback"@en ;
+                                               
+                                               rdfs:subClassOf <http://www.w3.org/ns/dqv#QualityAnnotation> ,
+                                                               <http://www.w3.org/ns/duv#UserFeedback> ;
+                                               
+                                               rdfs:comment "Represents feedback users might want to associate to datasets or distributions. Besides dqv:qualityAssessment which is the motivation required by all quality annotations, one of the predefined instances of oa:Motivation should be indicated as motivation to distinguish among the different kinds of feedback, e.g, classifications, questions."@en .
+
+
+
+###  http://www.w3.org/ns/duv#UserFeedback
+
+<http://www.w3.org/ns/duv#UserFeedback> rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/ns/oa#Annotation
+
+<http://www.w3.org/ns/oa#Annotation> rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/ns/oa#Motivation
+
+<http://www.w3.org/ns/oa#Motivation> rdf:type owl:Class .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://example.org/complementationGain
+
+<http://example.org/complementationGain> rdf:type <http://purl.org/eis/vocab/daq#Category> ,
+                                                  owl:NamedIndividual ,
+                                                  <http://www.w3.org/2004/02/skos/core#Concept> ,
+                                                  <http://www.w3.org/ns/dqv#Category> ;
+                                         
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Category that groups dimensions measuring the data quality gain  obatined by exploiting linksets."@en ;
+                                         
+                                         <http://purl.org/eis/vocab/daq#hasDimension> <http://example.org/completenessGain> .
+
+
+
+###  http://example.org/completeness
+
+<http://example.org/completeness> rdf:type <http://purl.org/eis/vocab/daq#Dimension> ,
+                                           owl:NamedIndividual ,
+                                           <http://www.w3.org/2004/02/skos/core#Concept> ,
+                                           <http://www.w3.org/ns/dqv#Dimension> .
+
+
+
+###  http://example.org/completenessGain
+
+<http://example.org/completenessGain> rdf:type <http://purl.org/eis/vocab/daq#Dimension> ,
+                                               owl:NamedIndividual ,
+                                               <http://www.w3.org/2004/02/skos/core#Concept> ,
+                                               <http://www.w3.org/ns/dqv#Dimension> ;
+                                      
+                                      <http://www.w3.org/2004/02/skos/core#prefLabel> "Completeness Gain"@en ;
+                                      
+                                      <http://www.w3.org/2004/02/skos/core#definition> "Degree to which a linkset contributes to obtaining all required information in a particular dataset."@en ;
+                                      
+                                      <http://www.w3.org/ns/dqv#inCategory> <http://example.org/complementationGain> .
+
+
+
+###  http://example.org/dsd
+
+<http://example.org/dsd> rdf:type <http://purl.org/linked-data/cube#DataStructureDefinition> ,
+                                  owl:NamedIndividual ;
+                         
+                         <http://purl.org/linked-data/cube#component> [ <http://purl.org/linked-data/cube#dimension> <http://example.org/onProperty>
+                                                                      ] ,
+                                                                      [ <http://purl.org/linked-data/cube#dimension> <http://www.w3.org/ns/dqv#computedOn>
+                                                                      ] ,
+                                                                      [ <http://purl.org/linked-data/cube#dimension> <http://www.w3.org/ns/dqv#isMeasurementOf>
+                                                                      ] ,
+                                                                      [ <http://purl.org/linked-data/cube#measure> <http://www.w3.org/ns/dqv#value>
+                                                                      ] ,
+                                                                      [ <http://purl.org/linked-data/cube#componentAttachment> <http://purl.org/linked-data/cube#DataSet> ;
+                                                                        <http://purl.org/linked-data/cube#attribute> <http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure>
+                                                                      ] ,
+                                                                      [ <http://purl.org/linked-data/cube#dimension> <http://purl.org/dc/terms/date>
+                                                                      ] ,
+                                                                      [ <http://purl.org/linked-data/cube#dimension> <http://example.org/onLanguage>
+                                                                      ] .
+
+
+
+###  http://example.org/importingForPropertyPercentage
+
+<http://example.org/importingForPropertyPercentage> rdf:type <http://purl.org/eis/vocab/daq#Metric> ,
+                                                             owl:NamedIndividual ,
+                                                             <http://www.w3.org/ns/dqv#Metric> ;
+                                                    
+                                                    <http://www.w3.org/2004/02/skos/core#definition> "Ratio between novel preferred or alternative labels gained via skos:exactMatch links and preferred or alternative labels already in the dataset."@en ;
+                                                    
+                                                    <http://www.w3.org/ns/dqv#inDimension> <http://example.org/completeness> ;
+                                                    
+                                                    <http://www.w3.org/ns/dqv#hasObservation> <http://example.org/measurement_exactMatchAltLabelEnDataset1> ,
+                                                                                              <http://example.org/measurement_exactMatchAltLabelEnDataset2> ,
+                                                                                              <http://example.org/measurement_exactMatchAltLabelItDataset1> ,
+                                                                                              <http://example.org/measurement_exactMatchAltLabelItDataset2> ,
+                                                                                              <http://example.org/measurement_exactMatchPrefLabelItDataset1> ,
+                                                                                              <http://example.org/measurement_exactMatchprefLabelItDataset2> ;
+                                                    
+                                                    <http://www.w3.org/ns/dqv#expectedDataType> xsd:double .
+
+
+
+###  http://example.org/measurement_exactMatchAltLabelEnDataset1
+
+<http://example.org/measurement_exactMatchAltLabelEnDataset1> rdf:type <http://purl.org/eis/vocab/daq#Observation> ,
+                                                                       <http://purl.org/linked-data/cube#Observation> ,
+                                                                       owl:NamedIndividual ,
+                                                                       <http://www.w3.org/ns/dqv#QualityMeasurement> ;
+                                                              
+                                                              <http://www.w3.org/ns/dqv#value> "0.1"^^xsd:double ;
+                                                              
+                                                              <http://purl.org/dc/terms/date> "2016-01-10" ;
+                                                              
+                                                              <http://example.org/onLanguage> "en" ;
+                                                              
+                                                              <http://www.w3.org/ns/dqv#isMeasurementOf> <http://example.org/importingForPropertyPercentage> ;
+                                                              
+                                                              <http://www.w3.org/ns/dqv#computedOn> <http://example.org/myLinkset> ;
+                                                              
+                                                              <http://purl.org/linked-data/cube#dataSet> <http://example.org/qualityMeasurementDataset> ;
+                                                              
+                                                              <http://example.org/onProperty> <http://www.w3.org/2004/02/skos/core#altLabel> .
+
+
+
+###  http://example.org/measurement_exactMatchAltLabelEnDataset2
+
+<http://example.org/measurement_exactMatchAltLabelEnDataset2> rdf:type <http://purl.org/eis/vocab/daq#Observation> ,
+                                                                       <http://purl.org/linked-data/cube#Observation> ,
+                                                                       owl:NamedIndividual ,
+                                                                       <http://www.w3.org/ns/dqv#QualityMeasurement> ;
+                                                              
+                                                              <http://www.w3.org/ns/dqv#value> "1.0"^^xsd:double ;
+                                                              
+                                                              <http://example.org/onLanguage> "en" ;
+                                                              
+                                                              <http://purl.org/dc/terms/date> "2016-03-10" ;
+                                                              
+                                                              <http://www.w3.org/ns/dqv#isMeasurementOf> <http://example.org/importingForPropertyPercentage> ;
+                                                              
+                                                              <http://www.w3.org/ns/dqv#computedOn> <http://example.org/myLinkset> ;
+                                                              
+                                                              <http://purl.org/linked-data/cube#dataSet> <http://example.org/qualityMeasurementDataset> ;
+                                                              
+                                                              <http://example.org/onProperty> <http://www.w3.org/2004/02/skos/core#altLabel> .
+
+
+
+###  http://example.org/measurement_exactMatchAltLabelItDataset1
+
+<http://example.org/measurement_exactMatchAltLabelItDataset1> rdf:type <http://purl.org/eis/vocab/daq#Observation> ,
+                                                                       <http://purl.org/linked-data/cube#Observation> ,
+                                                                       owl:NamedIndividual ,
+                                                                       <http://www.w3.org/ns/dqv#QualityMeasurement> ;
+                                                              
+                                                              <http://www.w3.org/ns/dqv#value> "1.0"^^xsd:double ;
+                                                              
+                                                              <http://purl.org/dc/terms/date> "2016-01-10" ;
+                                                              
+                                                              <http://example.org/onLanguage> "it" ;
+                                                              
+                                                              <http://www.w3.org/ns/dqv#isMeasurementOf> <http://example.org/importingForPropertyPercentage> ;
+                                                              
+                                                              <http://www.w3.org/ns/dqv#computedOn> <http://example.org/myLinkset> ;
+                                                              
+                                                              <http://purl.org/linked-data/cube#dataSet> <http://example.org/qualityMeasurementDataset> ;
+                                                              
+                                                              <http://example.org/onProperty> <http://www.w3.org/2004/02/skos/core#altLabel> .
+
+
+
+###  http://example.org/measurement_exactMatchAltLabelItDataset2
+
+<http://example.org/measurement_exactMatchAltLabelItDataset2> rdf:type <http://purl.org/eis/vocab/daq#Observation> ,
+                                                                       <http://purl.org/linked-data/cube#Observation> ,
+                                                                       owl:NamedIndividual ,
+                                                                       <http://www.w3.org/ns/dqv#QualityMeasurement> ;
+                                                              
+                                                              <http://www.w3.org/ns/dqv#value> "1.0"^^xsd:double ;
+                                                              
+                                                              <http://example.org/onLanguage> "it" ;
+                                                              
+                                                              <http://purl.org/dc/terms/date> "2016-03-10" ;
+                                                              
+                                                              <http://www.w3.org/ns/dqv#isMeasurementOf> <http://example.org/importingForPropertyPercentage> ;
+                                                              
+                                                              <http://www.w3.org/ns/dqv#computedOn> <http://example.org/myLinkset> ;
+                                                              
+                                                              <http://purl.org/linked-data/cube#dataSet> <http://example.org/qualityMeasurementDataset> ;
+                                                              
+                                                              <http://example.org/onProperty> <http://www.w3.org/2004/02/skos/core#altLabel> .
+
+
+
+###  http://example.org/measurement_exactMatchPrefLabelItDataset1
+
+<http://example.org/measurement_exactMatchPrefLabelItDataset1> rdf:type <http://purl.org/eis/vocab/daq#Observation> ,
+                                                                        <http://purl.org/linked-data/cube#Observation> ,
+                                                                        owl:NamedIndividual ,
+                                                                        <http://www.w3.org/ns/dqv#QualityMeasurement> ;
+                                                               
+                                                               <http://www.w3.org/ns/dqv#value> "0.5"^^xsd:double ;
+                                                               
+                                                               <http://purl.org/dc/terms/date> "2016-01-10" ;
+                                                               
+                                                               <http://example.org/onLanguage> "it" ;
+                                                               
+                                                               <http://www.w3.org/ns/dqv#isMeasurementOf> <http://example.org/importingForPropertyPercentage> ;
+                                                               
+                                                               <http://www.w3.org/ns/dqv#computedOn> <http://example.org/myLinkset> ;
+                                                               
+                                                               <http://purl.org/linked-data/cube#dataSet> <http://example.org/qualityMeasurementDataset> ;
+                                                               
+                                                               <http://example.org/onProperty> <http://www.w3.org/2004/02/skos/core#prefLabel> .
+
+
+
+###  http://example.org/measurement_exactMatchprefLabelItDataset2
+
+<http://example.org/measurement_exactMatchprefLabelItDataset2> rdf:type <http://purl.org/eis/vocab/daq#Observation> ,
+                                                                        <http://purl.org/linked-data/cube#Observation> ,
+                                                                        owl:NamedIndividual ,
+                                                                        <http://www.w3.org/ns/dqv#QualityMeasurement> ;
+                                                               
+                                                               <http://www.w3.org/ns/dqv#value> "0.5"^^xsd:double ;
+                                                               
+                                                               <http://purl.org/dc/terms/date> "2016-03-10" ;
+                                                               
+                                                               <http://example.org/onLanguage> "it" ;
+                                                               
+                                                               <http://www.w3.org/ns/dqv#isMeasurementOf> <http://example.org/importingForPropertyPercentage> ;
+                                                               
+                                                               <http://www.w3.org/ns/dqv#computedOn> <http://example.org/myLinkset> ;
+                                                               
+                                                               <http://purl.org/linked-data/cube#dataSet> <http://example.org/qualityMeasurementDataset> ;
+                                                               
+                                                               <http://example.org/onProperty> <http://www.w3.org/2004/02/skos/core#prefLabel> .
+
+
+
+###  http://example.org/myDataset1
+
+<http://example.org/myDataset1> rdf:type owl:NamedIndividual ,
+                                         <http://www.w3.org/ns/dcat#Dataset> ;
+                                
+                                <http://purl.org/dc/terms/title> "My dataset 1" .
+
+
+
+###  http://example.org/myDataset2
+
+<http://example.org/myDataset2> rdf:type owl:NamedIndividual ,
+                                         <http://www.w3.org/ns/dcat#Dataset> ;
+                                
+                                <http://purl.org/dc/terms/title> "My dataset 2" .
+
+
+
+###  http://example.org/myLinkset
+
+<http://example.org/myLinkset> rdf:type <http://rdfs.org/ns/void#Linkset> ,
+                                        rdfs:Resource ,
+                                        owl:NamedIndividual ,
+                                        <http://www.w3.org/ns/dcat#Dataset> ;
+                               
+                               <http://purl.org/dc/terms/title> "A Linkset between My dataset 1 and My dataset 2" ;
+                               
+                               <http://www.w3.org/ns/dqv#hasQualityMeasurement> <http://example.org/measurement_exactMatchAltLabelEnDataset1> ,
+                                                                                <http://example.org/measurement_exactMatchAltLabelEnDataset2> ,
+                                                                                <http://example.org/measurement_exactMatchAltLabelItDataset1> ,
+                                                                                <http://example.org/measurement_exactMatchAltLabelItDataset2> ,
+                                                                                <http://example.org/measurement_exactMatchPrefLabelItDataset1> ,
+                                                                                <http://example.org/measurement_exactMatchprefLabelItDataset2> ;
+                               
+                               <http://rdfs.org/ns/void#target> <http://example.org/myDataset1> ,
+                                                                <http://example.org/myDataset2> ;
+                               
+                               <http://rdfs.org/ns/void#linkPredicate> <http://www.w3.org/2004/02/skos/core#exactMatch> .
+
+
+
+###  http://example.org/onLanguage
+
+<http://example.org/onLanguage> rdf:type <http://purl.org/linked-data/cube#DimensionProperty> ,
+                                         owl:DataProperty ,
+                                         owl:NamedIndividual .
+
+
+
+###  http://example.org/onProperty
+
+<http://example.org/onProperty> rdf:type <http://purl.org/linked-data/cube#DimensionProperty> ,
+                                         owl:NamedIndividual .
+
+
+
+###  http://example.org/qualityMeasurementDataset
+
+<http://example.org/qualityMeasurementDataset> rdf:type <http://purl.org/eis/vocab/daq#QualityGraph> ,
+                                                        <http://purl.org/linked-data/cube#DataSet> ,
+                                                        owl:NamedIndividual ,
+                                                        <http://www.w3.org/ns/dqv#QualityMeasurementDataset> ;
+                                               
+                                               rdfs:label "Linkset quality"@en ;
+                                               
+                                               rdfs:comment "Example of linkset quality DQV encoding"@en ;
+                                               
+                                               <http://purl.org/linked-data/cube#structure> <http://example.org/dsd> .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+
+<http://www.w3.org/2004/02/skos/core#altLabel> rdf:type rdf:Property ,
+                                                        owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+
+<http://www.w3.org/2004/02/skos/core#prefLabel> rdf:type rdf:Property ,
+                                                         owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/ns/dqv
+
+<http://www.w3.org/ns/dqv> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
+                                    owl:NamedIndividual ;
+                           
+                           <http://purl.org/dc/terms/modified> "2015-04-15"^^xsd:date ;
+                           
+                           <http://purl.org/dc/terms/created> "2015-12-17"^^xsd:date ;
+                           
+                           <http://purl.org/vocab/vann/preferredNamespaceUri> "http://www.w3.org/ns/dqv" ;
+                           
+                           <http://purl.org/vocab/vann/preferredNamespacePrefix> "dqv" ;
+                           
+                           <http://purl.org/dc/terms/title> "Data Quality Vocabulary" ;
+                           
+                           <http://purl.org/dc/terms/description> "The Data Quality Vocabulary (DQV) is seen as an extension to DCAT to cover the quality of the data, how frequently is it updated, whether it accepts user corrections, persistence commitments etc. When used by publishers, this vocabulary will foster trust in the data amongst developers."@en ;
+                           
+                           <http://purl.org/dc/terms/type> <http://purl.org/adms/assettype/Ontology> ;
+                           
+                           <http://xmlns.com/foaf/0.1/homepage> <http://www.w3.org/TR/vocab-dqv/> ;
+                           
+                           <http://purl.org/dc/terms/publisher> <http://www.w3.org/data#W3C> ;
+                           
+                           <http://purl.org/dc/terms/contributor> [ ] ,
+[ ] ,
+[ ] ,
+[ ] ;
+
+<http://purl.org/dc/terms/creator> [ ] ,
+[ ] ;
+
+<http://purl.org/dc/terms/contributor> [ ] ,
+[ ] .
+
+
+
+###  http://www.w3.org/ns/dqv#computedOn
+
+<http://www.w3.org/ns/dqv#computedOn> rdf:type <http://purl.org/linked-data/cube#DimensionProperty> ,
+                                               owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/ns/dqv#isMeasurementOf
+
+<http://www.w3.org/ns/dqv#isMeasurementOf> rdf:type <http://purl.org/linked-data/cube#DimensionProperty> ,
+                                                    owl:NamedIndividual .
+
+
+
+###  http://www.w3.org/ns/dqv#precision
+
+<http://www.w3.org/ns/dqv#precision> rdf:type owl:NamedIndividual ,
+                                              <http://www.w3.org/ns/oa#Motivation> ;
+                                     
+                                     <http://www.w3.org/2004/02/skos/core#prefLabel> "Precision"@en ;
+                                     
+                                     <http://www.w3.org/2004/02/skos/core#definition> "Precision is a quality dimension which refers to the recorded level of details. It represents the exactness of measurement or description."@en .
+
+
+
+###  http://www.w3.org/ns/dqv#qualityAssessment
+
+<http://www.w3.org/ns/dqv#qualityAssessment> rdf:type owl:NamedIndividual ,
+                                                      <http://www.w3.org/ns/oa#Motivation> ;
+                                             
+                                             <http://www.w3.org/2004/02/skos/core#definition> "Motivation that must be specified for quality annotations"@en ;
+                                             
+                                             <http://www.w3.org/2004/02/skos/core#prefLabel> "Quality assessment"@en ;
+                                             
+                                             <http://www.w3.org/2004/02/skos/core#closeMatch> <http://www.w3.org/ns/oa#moderating> .
+
+
+
+###  http://www.w3.org/ns/dqv#value
+
+<http://www.w3.org/ns/dqv#value> rdf:type <http://purl.org/linked-data/cube#MeasureProperty> ,
+                                          owl:NamedIndividual .
+
+
+
+
+
+#################################################################
+#
+#    Annotations
+#
+#################################################################
+
+
+<http://www.w3.org/ns/dqv#isMeasurementOf> rdfs:label "is measurement of"@en ;
+                                           
+                                           rdfs:comment "Indicates the metric being observed."@en .
+
+
+
+<http://www.w3.org/ns/dqv#computedOn> rdfs:label "computed on"@en ;
+                                      
+                                      rdfs:comment "Refers to the resource (e.g., a dataset, a linkset, a graph, a set of triples) on which the quality measurement is performed. In the DQV context, this property is generally expected to be used in statements in which objects are instances of dcat:Dataset and dcat:Distribution."@en .
+
+
+
+<http://example.org/onLanguage> rdfs:label "label import assessment language"@en ;
+                                
+                                rdfs:comment "language on which label importing is assessed."@en .
+
+
+
+<http://www.w3.org/ns/dqv#QualityPolicy> rdfs:label "Quality policy"@en ;
+                                         
+                                         rdfs:comment "Represents a policy or agreement that is chiefly governed by data quality concerns."@en .
+
+
+
+<http://example.org/onProperty> rdfs:label "label import assessment property"@en ;
+                                
+                                rdfs:comment "property on which label importing is assessed."@en .
+
+
+
+<http://www.w3.org/ns/dqv#value> rdfs:label "value"@en ;
+                                 
+                                 rdfs:comment "Refers to values computed by metric."@en .
+
+
+
+
+###  Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net
+
