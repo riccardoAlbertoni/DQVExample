@@ -1,6 +1,0 @@
-prefix qb: <http://purl.org/linked-data/cube#> 
-select * where  {
-  ?dsd a qb:DataStructureDefinition .
-   ?dsd qb:component ?component. ?component qb:componentProperty ?cproperty. ?cproperty a ?p . 
-}
-    
