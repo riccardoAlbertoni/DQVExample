@@ -1,0 +1,886 @@
+@prefix :      <http://www.semanticweb.org/owl/owlapi/turtle#> .
+@prefix duv:   <http://www.w3.org/ns/duv#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix dqv:   <http://www.w3.org/ns/dqv#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix qb:    <http://purl.org/linked-data/cube#> .
+@prefix oa:    <http://www.w3.org/ns/oa#> .
+@prefix daq:   <http://purl.org/eis/vocab/daq#> .
+@prefix xml:   <http://www.w3.org/XML/1998/namespace> .
+@prefix sdmx-concept: <http://purl.org/linked-data/sdmx/2009/concept#> .
+@prefix cex:   <http://purl.org/weso/ontology/computex#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix wf-onto: <http://data.webfoundation.org/ontology/> .
+@prefix scovo: <http://purl.org/NET/scovo#> .
+@prefix sdmx-attribute: <http://purl.org/linked-data/sdmx/2009/attribute#> .
+@prefix dcat:  <http://www.w3.org/ns/dcat#> .
+@prefix vann:  <http://purl.org/vocab/vann/> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix wf-org: <http://data.webfoundation.org/organization/> .
+@prefix void:  <http://rdfs.org/ns/void#> .
+@prefix voaf:  <http://purl.org/vocommons/voaf#> .
+@prefix wf-people: <http://data.webfoundation.org/people/> .
+@prefix ex:    <http://example.org/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix earl:  <http://www.w3.org/ns/earl#> .
+@prefix lg:    <http://linkedgeodata.org/ontology/> .
+
+qb:concept  a             rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment      "gives the concept which is being measured or indicated by a ComponentProperty"@en ;
+        rdfs:domain       qb:ComponentProperty ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "concept"@en ;
+        rdfs:range        skos:Concept ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+qb:DataSet  a             owl:Class , rdfs:Resource , rdfs:Class ;
+        rdfs:comment      "Represents a collection of observations, possibly organized into various slices, conforming to some common dimensional structure."@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Data set"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   qb:Attachable , rdfs:Resource , qb:DataSet .
+
+qb:dimension  a             owl:ObjectProperty , rdfs:Resource , rdf:Property ;
+        rdfs:comment        "An alternative to qb:componentProperty which makes explicit that the component is a dimension"@en ;
+        rdfs:isDefinedBy    <http://purl.org/linked-data/cube> ;
+        rdfs:label          "dimension"@en ;
+        rdfs:range          qb:DimensionProperty ;
+        rdfs:seeAlso        <http://purl.org/linked-data/cube> ;
+        rdfs:subPropertyOf  qb:componentProperty , qb:dimension .
+
+owl:Restriction  a  rdfs:Resource , rdfs:Class .
+
+cex:Normalize  a         rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Normalize an observation (z-score)"@en ;
+        rdfs:subClassOf  cex:Normalize , cex:Computation , rdfs:Resource .
+
+rdf:nil  a      rdfs:Resource , rdf:List .
+
+cex:Imputed  a        cex:ObsStatus ;
+        rdfs:comment  "Data values that have been imputed from their raw version"@en ;
+        rdfs:label    "Imputed data"@en .
+
+rdfs:Container  a        rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  rdfs:Container .
+
+ex:testChecking2  a          dqv:QualityMeasurement , qb:Observation ;
+        dcterms:date         "2016-03-10"^^xsd:date ;
+        qb:dataSet           ex:qualityMeasurementDataset ;
+        dqv:computedOn       ex:myDataset1 ;
+        dqv:isMeasurementOf  ex:testChecking ;
+        dqv:value            earl:failed .
+
+dqv:QualityMeasurement
+        a                    rdfs:Class , owl:Class ;
+        rdfs:comment         "A quality measurement represents the evaluation of a given dataset (or dataset distribution) against a specific quality metric."@en ;
+        rdfs:label           "Quality Measurement"@en ;
+        rdfs:subClassOf      qb:Observation ;
+        owl:equivalentClass  daq:Observation .
+
+cex:Computation  a       rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Computation"@en ;
+        rdfs:subClassOf  cex:Computation , rdfs:Resource .
+
+qb:HierarchicalCodeList
+        a                 rdfs:Resource , owl:Class , rdfs:Class ;
+        rdfs:comment      "Represents a generalized hierarchy of concepts which can be used for coding. The hierarchy is defined by one or more roots together with a property which relates concepts in the hierarchy to thier child concept .  The same concepts may be members of multiple hierarchies provided that different qb:parentChildProperty values are used for each hierarchy."@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Hierarchical Code List"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   qb:HierarchicalCodeList , rdfs:Resource .
+
+dqv:QualityCertificate
+        a                rdfs:Class , owl:Class ;
+        rdfs:comment     "Represents annotations that associate datasets or distributions to quality certificate."@en ;
+        rdfs:label       "Quality certificate"@en ;
+        rdfs:subClassOf  dqv:QualityAnnotation .
+
+cex:Low  a               rdfs:Resource , rdfs:Class , skos:Concept ;
+        rdfs:comment     "A low value is preferred than a higher one"@en ;
+        rdfs:label       "Low"@en ;
+        rdfs:subClassOf  rdfs:Resource , cex:Low , cex:HighLow .
+
+cex:High  a              rdfs:Resource , rdfs:Class , skos:Concept ;
+        rdfs:comment     "A high value is preferred than a lower one"@en ;
+        rdfs:label       "High"@en ;
+        rdfs:subClassOf  rdfs:Resource , cex:High , cex:HighLow .
+
+qb:order  a               rdfs:Resource , rdf:Property , owl:DatatypeProperty ;
+        rdfs:comment      "indicates a priority order for the components of sets with this structure, used to guide presentations - lower order numbers come before higher numbers, un-numbered components come last"@en ;
+        rdfs:domain       qb:ComponentSpecification ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "order"@en ;
+        rdfs:range        xsd:int ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+qb:measureDimension  a      rdf:Property , owl:ObjectProperty , rdfs:Resource ;
+        rdfs:comment        "An alternative to qb:componentProperty which makes explicit that the component is a measure dimension"@en ;
+        rdfs:isDefinedBy    <http://purl.org/linked-data/cube> ;
+        rdfs:label          "measure dimension"@en ;
+        rdfs:range          qb:DimensionProperty ;
+        rdfs:seeAlso        <http://purl.org/linked-data/cube> ;
+        rdfs:subPropertyOf  qb:measureDimension , qb:componentProperty .
+
+dqv:QualityAnnotation
+        a                    rdfs:Class , owl:Class ;
+        rdfs:comment         "Represents quality annotations, including rating, quality certificate, feedback that can be associated to datasets or distributions. Quality annotations must have one oa:motivatedBy statement with an instance of oa:Motivation (and skos:Concept), which reflects a quality assessment purpose. We define this instance as dqv:qualityAssessment."@en ;
+        rdfs:label           "Quality Annotation"@en ;
+        rdfs:subClassOf      oa:Annotation ;
+        owl:equivalentClass  [ a               owl:Restriction ;
+                               owl:hasValue    dqv:qualityAssessment ;
+                               owl:onProperty  oa:motivation
+                             ] .
+
+cex:Observation  a       rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:comment     "An observation" ;
+        rdfs:label       "Observation" ;
+        rdfs:subClassOf  cex:Observation , rdfs:Resource .
+
+qb:observation  a         rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment      "indicates a observation contained within this slice of the data set"@en ;
+        rdfs:domain       qb:ObservationGroup ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "observation"@en ;
+        rdfs:range        qb:Observation ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+rdf:Seq  a               rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  rdfs:Container , rdf:Seq .
+
+cex:unit  a                 rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment        "Measure unit"@en ;
+        rdfs:label          "unit of measure property"@en ;
+        rdfs:range          rdf:Resource ;
+        rdfs:subPropertyOf  cex:unit .
+
+cex:indicator  a     rdfs:Resource , rdf:Property , owl:FunctionalProperty ;
+        rdfs:domain  cex:Observation ;
+        rdfs:range   cex:Indicator .
+
+owl:FunctionalProperty
+        a       rdfs:Resource , rdfs:Class .
+
+dqv:QualityMetadata  a   rdfs:Class , owl:Class ;
+        rdfs:comment     "Represents quality metadata, it is defined to group quality certificates, policies, measurements and annotations under a named graph."@en ;
+        rdfs:label       "Quality Metadata"@en ;
+        rdfs:subClassOf  <http://www.w3.org/2004/03/trix/rdfg-1/Graph> ;
+        vann:usageNote   "QualityMetadata containers do not necessary include all types of quality statements DQV can support. Implementers decide the granularity of containment. In the current version of DQV, we also leave open the choice of the containment technique. Implementers can use (RDF) graph containment. They may also use a dedicated property of their choice to link instances of dqv:QualityMetadata with instances of other DQV classes. For example using (a subproperty of) dcterms:hasPart"@en .
+
+rdfs:range  a        rdfs:Resource , rdf:Property ;
+        rdfs:domain  rdf:Property ;
+        rdfs:range   rdfs:Class .
+
+qb:AttributeProperty  a   owl:Class , rdfs:Class , rdfs:Resource ;
+        rdfs:comment      "The class of components which represent attributes of observations in the cube, e.g. unit of measurement"@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Attribute property"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   qb:ComponentProperty , qb:AttributeProperty , rdf:Property , rdfs:Resource ;
+        owl:disjointWith  qb:MeasureProperty .
+
+qb:Observation  a         rdfs:Class , rdfs:Resource , owl:Class ;
+        rdfs:comment      "A single observation in the cube, may have one or more associated measured values"@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Observation"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   rdfs:Resource , qb:Attachable , qb:Observation .
+
+skos:Collection  a  owl:Class .
+
+cex:ImputedSlice  a      rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Impute values from a Slice"@en ;
+        rdfs:subClassOf  cex:ImputedSlice , cex:Computation , rdfs:Resource .
+
+cex:FilterDefinition  a  rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Filter definition"@en ;
+        rdfs:subClassOf  cex:FilterDefinition , rdfs:Resource .
+
+rdf:XMLLiteral  a  rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+ex:iteroperability  a    dqv:Dimension ;
+        skos:definition  " ..... "@en ;
+        skos:prefLabel   "Interoperability"@en ;
+        dqv:inCategory   ex:representation .
+
+skos:ConceptScheme  a  owl:Class .
+
+qb:ComponentSet  a        rdfs:Resource , owl:Class , rdfs:Class ;
+        rdfs:comment      "Abstract class of things which reference one or more ComponentProperties"@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Component set"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   qb:ComponentSet , rdfs:Resource .
+
+qb:SliceKey  a            owl:Class , rdfs:Class , rdfs:Resource ;
+        rdfs:comment      "Denotes a subset of the component properties of a DataSet which are fixed in the corresponding slices"@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Slice key"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   qb:ComponentSet , rdfs:Resource , qb:SliceKey .
+
+cex:Weight  a            rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Obtain from an observation and a weightSchema"@en ;
+        rdfs:subClassOf  cex:Weight , cex:Computation , rdfs:Resource .
+
+dqv:computedOn  a               qb:DimensionProperty , rdf:Property ;
+        rdfs:comment            "Refers to the resource (e.g., a dataset, a linkset, a graph, a set of triples) on which the quality measurement is performed. In the DQV context, this property is generally expected to be used in statements in which objects are instances of dcat:Dataset and dcat:Distribution."@en ;
+        rdfs:domain             dqv:QualityMeasurement ;
+        rdfs:label              "computed on"@en ;
+        rdfs:range              rdfs:Resource ;
+        owl:equivalentProperty  daq:computedOn ;
+        owl:inverseOf           dqv:hasQualityMeasurement .
+
+cex:Weighted  a          rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Weight value"@en ;
+        rdfs:subClassOf  cex:Weighted , cex:Computation , rdfs:Resource .
+
+owl:NamedIndividual  a  rdfs:Resource , rdfs:Class .
+
+cex:Adjust  a            rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Adjust a value by adding a value"@en ;
+        rdfs:subClassOf  cex:Adjust , cex:Computation , rdfs:Resource .
+
+rdfs:Resource  a         rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  rdfs:Resource .
+
+qb:parentChildProperty
+        a                 rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment      "Specifies a property which relates a parent concept in the hierarchy to a child concept."@en ;
+        rdfs:domain       qb:HierarchicalCodeList ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "parent-child property"@en ;
+        rdfs:range        rdf:Property ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+rdfs:subPropertyOf  a  rdfs:Resource , rdf:Property ;
+        rdfs:domain  rdf:Property ;
+        rdfs:range   rdf:Property .
+
+dqv:value  a                    owl:DatatypeProperty , qb:MeasureProperty , rdf:Property ;
+        rdfs:comment            "Refers to values computed by metric."@en ;
+        rdfs:domain             dqv:QualityMeasurement ;
+        rdfs:label              "value"@en ;
+        owl:equivalentProperty  daq:value .
+
+dqv:inCategory  a       rdf:Property ;
+        rdfs:comment    "Represents the category a dimension is grouped in."@en ;
+        rdfs:domain     dqv:Dimension ;
+        rdfs:label      "in category"@en ;
+        rdfs:range      dqv:Category ;
+        vann:usageNote  "Categories are meant to systematically organize dimensions. The Data Quality Vocabulary defines no specific cardinality constraints for dqv:inCategory, since distinct quality frameworks might have different perspectives over a dimension. A dimension may therefore be associated to more than one category. However, those who define new quality metrics should try to avoid this as much as possible and assign only one category to the dimensions they define."@en ;
+        owl:inverseOf   daq:hasDimension .
+
+rdfs:domain  a       rdfs:Resource , rdf:Property ;
+        rdfs:domain  rdf:Property ;
+        rdfs:range   rdfs:Class .
+
+rdfs:ContainerMembershipProperty
+        a                rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  rdf:Property , rdfs:ContainerMembershipProperty .
+
+rdfs:seeAlso  a             rdfs:Resource , rdf:Property ;
+        rdfs:subPropertyOf  rdfs:seeAlso .
+
+rdf:subject  a              rdfs:Resource , rdf:Property ;
+        rdfs:domain         rdf:Statement ;
+        rdfs:subPropertyOf  rdf:subject .
+
+dqv:Metric  a                rdfs:Class , owl:Class ;
+        rdfs:comment         "A standard to measure a quality dimension. An observation (instance of dqv:QualityMeasurement) assigns a value in a given unit to a Metric."@en ;
+        rdfs:label           "Metric"@en ;
+        owl:equivalentClass  daq:Metric .
+
+rdfs:Datatype  a         rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  rdfs:Class , rdfs:Datatype .
+
+qb:CodedProperty  a       rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:comment      "Superclass of all coded ComponentProperties"@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Coded property"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   rdfs:Resource , qb:ComponentProperty , qb:CodedProperty , rdf:Property .
+
+dqv:expectedDataType  a         rdf:Property ;
+        rdfs:comment            "Represents the expected data type for metric's observed value (e.g. xsd:boolean, xsd:double etc...)"@en ;
+        rdfs:domain             xsd:anySimpleType , dqv:Metric ;
+        rdfs:label              "expected data type"@en ;
+        owl:equivalentProperty  daq:expectedDataType .
+
+qb:component  a           rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment      "indicates a component specification which is included in the structure of the dataset"@en ;
+        rdfs:domain       qb:DataStructureDefinition ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "component specification"@en ;
+        rdfs:range        qb:ComponentSpecification ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+sdmx-attribute:unitMeasure
+        a       qb:AttributeProperty .
+
+cex:md5-checksum  a  owl:DatatypeProperty ;
+        rdfs:label  "MD5 Checksum" .
+
+rdf:List  a              rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  rdfs:Resource .
+
+cex:name  a          rdfs:Resource , rdf:Property , owl:DatatypeProperty ;
+        rdfs:domain  cex:Param ;
+        rdfs:range   xsd:String .
+
+cex:Indicator  a         rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:comment     "A given indicator. Several indicators make a Component" ;
+        rdfs:label       "Indicator" ;
+        rdfs:subClassOf  cex:Indicator , rdfs:Resource ;
+        skos:broader     cex:Component .
+
+skos:Concept  a          rdfs:Resource , owl:Class , rdfs:Class ;
+        rdfs:subClassOf  skos:Concept , rdfs:Resource .
+
+cex:highLow  a              rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment        "Indicates which value if High (Low) values are preferred"@en ;
+        rdfs:label          "high/low property"@en ;
+        rdfs:range          skos:Concept ;
+        rdfs:subPropertyOf  cex:highLow .
+
+owl:ObjectProperty  a  rdfs:Resource , rdfs:Class .
+
+rdf:Resource  a          rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  rdf:Resource , rdfs:Resource .
+
+ex:representation  a     dqv:Category ;
+        skos:definition  "..... "@en .
+
+rdf:Property  a          rdfs:Resource , owl:Class , rdfs:Class ;
+        rdfs:subClassOf  rdf:Property , rdfs:Resource .
+
+rdf:first  a                rdfs:Resource , rdf:Property ;
+        rdfs:domain         rdf:List ;
+        rdfs:subPropertyOf  rdf:first .
+
+qb:ObservationGroup  a    rdfs:Resource , owl:Class , rdfs:Class ;
+        rdfs:comment      "A, possibly arbitrary, group of observations."@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Observation Group"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   qb:ObservationGroup , rdfs:Resource .
+
+dcterms:date  a     qb:DimensionProperty ;
+        rdfs:range  xsd:date .
+
+cex:Ranking  a           rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Ranking of a slice"@en ;
+        rdfs:subClassOf  cex:Ranking , cex:Computation , rdfs:Resource .
+
+dqv:QualityMeasurementDataset
+        a                    rdfs:Class , owl:Class ;
+        rdfs:comment         "Represents a dataset of quality measurements, evaluations of a given dataset (or dataset distribution) against a specific quality metric."@en ;
+        rdfs:label           "Quality Measurement Dataset"@en ;
+        rdfs:subClassOf      qb:DataSet ;
+        owl:equivalentClass  daq:QualityGraph .
+
+qb:attribute  a             rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment        "An alternative to qb:componentProperty which makes explicit that the component is a attribute"@en ;
+        rdfs:isDefinedBy    <http://purl.org/linked-data/cube> ;
+        rdfs:label          "attribute"@en ;
+        rdfs:range          qb:AttributeProperty ;
+        rdfs:seeAlso        <http://purl.org/linked-data/cube> ;
+        rdfs:subPropertyOf  qb:attribute , qb:componentProperty .
+
+qb:hierarchyRoot  a       rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment      "Specifies a root of the hierarchy. A hierarchy may have multiple roots but must have at least one."@en ;
+        rdfs:domain       qb:HierarchicalCodeList ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+cex:GroupMean  a         rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Mean of a group of observations"@en ;
+        rdfs:subClassOf  cex:GroupMean , cex:Computation , rdfs:Resource .
+
+xsd:String  a            rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  xsd:String , rdfs:Resource .
+
+qb:sliceKey  a            rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment      "indicates a slice key which is used for slices in this dataset"@en ;
+        rdfs:domain       qb:DataStructureDefinition ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "slice key"@en ;
+        rdfs:range        qb:SliceKey ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+qb:measureType  a         qb:CodedProperty , owl:NamedIndividual , qb:DimensionProperty , qb:ComponentProperty , rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment      "Generic measure dimension, the value of this dimension indicates which measure (from the set of measures in the DSD) is being given by the obsValue (or other primary measure)"@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "measure type"@en ;
+        rdfs:range        qb:MeasureProperty ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+dqv:Category  a              rdfs:Class , owl:Class ;
+        rdfs:comment         "Represents a group of quality dimensions in which a common type of information is used as quality indicator."@en ;
+        rdfs:label           "Category"@en ;
+        rdfs:subClassOf      skos:Concept ;
+        owl:equivalentClass  daq:Category .
+
+ex:myDataset1  a       dcat:Dataset ;
+        dcterms:title  "My dataset 1" .
+
+cex:Error  a                 rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label           "Validation Error"@en ;
+        rdfs:subClassOf      cex:Error , earl:TestResult , rdfs:Resource ;
+        owl:equivalentClass  [ a               owl:Restriction ;
+                               owl:hasValue    earl:failed ;
+                               owl:onProperty  earl:outcome
+                             ] ;
+        owl:equivalentClass  [ a               owl:Restriction ;
+                               owl:hasValue    earl:failed ;
+                               owl:onProperty  earl:outcome
+                             ] .
+
+ex:dsd  a             qb:DataStructureDefinition ;
+        qb:component  [ qb:attribute            sdmx-attribute:unitMeasure ;
+                        qb:componentAttachment  qb:DataSet ;
+                        qb:componentProperty    sdmx-attribute:unitMeasure ;
+                        qb:componentRequired    false
+                      ] ;
+        qb:component  [ qb:componentProperty  dqv:value ;
+                        qb:measure            dqv:value
+                      ] ;
+        qb:component  [ qb:componentProperty  dqv:isMeasurementOf ;
+                        qb:dimension          dqv:isMeasurementOf ;
+                        qb:order              1
+                      ] ;
+        qb:component  [ qb:componentProperty  dcterms:date ;
+                        qb:dimension          dcterms:date ;
+                        qb:order              3
+                      ] ;
+        qb:component  [ qb:componentProperty  dqv:computedOn ;
+                        qb:dimension          dqv:computedOn ;
+                        qb:order              2
+                      ] .
+
+_:b0    a                rdfs:Resource , owl:Class , rdfs:Class ;
+        rdfs:subClassOf  _:b0 , rdfs:Resource ;
+        owl:unionOf      [ a          rdfs:Resource , rdf:List ;
+                           rdf:first  qb:HierarchicalCodeList ;
+                           rdf:rest   [ a          rdfs:Resource , rdf:List ;
+                                        rdf:first  skos:Collection ;
+                                        rdf:rest   [ a          rdfs:Resource , rdf:List ;
+                                                     rdf:first  skos:ConceptScheme ;
+                                                     rdf:rest   ()
+                                                   ]
+                                      ]
+                         ] .
+
+dqv:Dimension  a             rdfs:Class , owl:Class ;
+        rdfs:comment         "Represents criteria relevant for assessing quality. Each quality dimension must have one or more metric to measure it. A dimension is linked with a category using the dqv:inDimension property."@en ;
+        rdfs:label           "Dimension"@en ;
+        rdfs:subClassOf      skos:Concept ;
+        owl:equivalentClass  daq:Dimension .
+
+owl:DatatypeProperty  a  rdfs:Resource , rdfs:Class .
+
+owl:Ontology  a  rdfs:Resource , rdfs:Class .
+
+rdf:Alt  a               rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  rdfs:Container , rdf:Alt .
+
+<http://www.w3.org/ns/dqv>
+        a                              voaf:Vocabulary ;
+        dcterms:contributor            [ foaf:name
+                          "Jeremy Debattista" ] ;
+        dcterms:contributor            [ foaf:name
+                          "Makx Dekkers" ] ;
+        dcterms:contributor            [ foaf:name
+                          "Nandana Mihindukulasooriya" ] ;
+        dcterms:contributor            [ foaf:name
+                          "Deirdre Lee" ] ;
+        dcterms:contributor            [ foaf:name
+                          "Christophe Guéret" ] ;
+        dcterms:contributor            [ foaf:name
+                          "Amrapali Zaveri" ] ;
+        dcterms:created                "2015-12-17"^^xsd:date ;
+        dcterms:creator                [ foaf:name
+                          "Antoine Isaac" ] ;
+        dcterms:creator                [ foaf:name
+                          "Riccardo Albertoni" ] ;
+        dcterms:description            "The Data Quality Vocabulary (DQV) is seen as an extension to DCAT to cover the quality of the data, how frequently is it updated, whether it accepts user corrections, persistence commitments etc. When used by publishers, this vocabulary will foster trust in the data amongst developers."@en ;
+        dcterms:modified               "2015-04-15"^^xsd:date ;
+        dcterms:publisher              <http://www.w3.org/data#W3C> ;
+        dcterms:title                  "Data Quality Vocabulary" ;
+        dcterms:type                   <http://purl.org/adms/assettype/Ontology> ;
+        vann:preferredNamespacePrefix  "dqv" ;
+        vann:preferredNamespaceUri     "http://www.w3.org/ns/dqv" ;
+        foaf:homepage                  <http://www.w3.org/TR/vocab-dqv/> .
+
+qb:dataSet  a             rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment      "indicates the data set of which this observation is a part"@en ;
+        rdfs:domain       qb:Observation ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "data set"@en ;
+        rdfs:range        qb:DataSet ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+qb:componentRequired  a   rdfs:Resource , rdf:Property , owl:DatatypeProperty ;
+        rdfs:comment      "Indicates whether a component property is required (true) or optional (false) in the context of a DSD. Only applicable\n    to components correspond to an attribute. Defaults to false (optional)."@en ;
+        rdfs:domain       qb:ComponentSpecification ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "component required"@en ;
+        rdfs:range        xsd:boolean ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+rdf:type  a         rdfs:Resource , rdf:Property ;
+        rdfs:range  rdfs:Class .
+
+dqv:precision  a         oa:Motivation ;
+        skos:definition  "Precision is a quality dimension which refers to the recorded level of details. It represents the exactness of measurement or description."@en ;
+        skos:prefLabel   "Precision"@en .
+
+cex:SubIndex  a          rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Subíndice"@es , "Subindex"@en , "Subindex" ;
+        rdfs:subClassOf  cex:SubIndex , rdfs:Resource .
+
+earl:TestResult  a       rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  earl:TestResult .
+
+ex:qualityMeasurementDataset
+        a             qb:DataSet , dqv:QualityMeasurementDataset ;
+        rdfs:comment  "Example of linkset quality DQV encoding"@en ;
+        rdfs:label    "Linkset quality"@en ;
+        qb:structure  ex:dsd .
+
+rdfs:subClassOf  a   rdfs:Resource , rdf:Property ;
+        rdfs:domain  rdfs:Class ;
+        rdfs:range   rdfs:Class .
+
+scovo:Dataset  a             owl:Class ;
+        owl:equivalentClass  qb:DataSet .
+
+rdf:object  a               rdfs:Resource , rdf:Property ;
+        rdfs:domain         rdf:Statement ;
+        rdfs:subPropertyOf  rdf:object .
+
+ex:testChecking1  a          dqv:QualityMeasurement , qb:Observation ;
+        dcterms:date         "2016-01-10"^^xsd:date ;
+        qb:dataSet           ex:qualityMeasurementDataset ;
+        dqv:computedOn       ex:myDataset1 ;
+        dqv:isMeasurementOf  ex:testChecking ;
+        dqv:value            earl:passed .
+
+qb:Slice  a               owl:Class , rdfs:Resource , rdfs:Class ;
+        rdfs:comment      "Denotes a subset of a DataSet defined by fixing a subset of the dimensional values, component properties on the Slice"@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Slice"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   rdfs:Resource , qb:Attachable , qb:Slice , qb:ObservationGroup .
+
+qb:componentProperty  a     rdfs:Resource , owl:ObjectProperty , rdf:Property ;
+        rdfs:comment        "indicates a ComponentProperty (i.e. attribute/dimension) expected on a DataSet, or a dimension fixed in a SliceKey"@en ;
+        rdfs:domain         qb:ComponentSet ;
+        rdfs:isDefinedBy    <http://purl.org/linked-data/cube> ;
+        rdfs:label          "component"@en ;
+        rdfs:range          qb:ComponentProperty ;
+        rdfs:seeAlso        <http://purl.org/linked-data/cube> ;
+        rdfs:subPropertyOf  qb:componentProperty .
+
+xsd:boolean  a           rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  xsd:boolean , rdfs:Resource .
+
+cex:Copy  a              rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Value copied from other observation"@en ;
+        rdfs:subClassOf  cex:Copy , cex:Computation , rdfs:Resource .
+
+qb:DataStructureDefinition
+        a                 rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:comment      "Defines the structure of a DataSet or slice"@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Data structure definition"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   rdfs:Resource , qb:ComponentSet , qb:DataStructureDefinition .
+
+cex:Mean  a              rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Mean of other observations"@en ;
+        rdfs:subClassOf  rdfs:Resource , cex:Mean , cex:Computation .
+
+rdf:Bag  a               rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  rdfs:Container , rdf:Bag .
+
+cex:ErrorParam  a        rdfs:Resource , owl:Class , rdfs:Class ;
+        rdfs:label       "Error Parameter" ;
+        rdfs:subClassOf  cex:ErrorParam , cex:Param , rdfs:Resource .
+
+cex:component  a            rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment        "Component that provides the indicator"@en ;
+        rdfs:domain         cex:Indicator ;
+        rdfs:label          "has-component"@en ;
+        rdfs:range          cex:Component ;
+        rdfs:subPropertyOf  cex:component .
+
+<http://purl.org/linked-data/cube>
+        a                    owl:Ontology ;
+        rdfs:comment         "This vocabulary allows multi-dimensional data, such as statistics, to be published in RDF. It is based on the core information model from SDMX (and thus also DDI)." ;
+        rdfs:label           "The data cube vocabulary" ;
+        dcterms:contributor  []  ;
+        dcterms:contributor  []  ;
+        dcterms:contributor  []  ;
+        dcterms:contributor  []  ;
+        dcterms:contributor  []  ;
+        dcterms:created      "2010-07-12"^^xsd:date ;
+        dcterms:license      <http://www.opendatacommons.org/licenses/pddl/1.0/> ;
+        dcterms:modified     "2010-11-27"^^xsd:date , "2013-07-26"^^xsd:date , "2013-03-02"^^xsd:date ;
+        dcterms:title        "Vocabulary for multi-dimensional (e.g. statistical) data publishing" ;
+        owl:versionInfo      "0.2" .
+
+rdfs:comment  a     rdfs:Resource , rdf:Property ;
+        rdfs:range  rdfs:Literal .
+
+cex:SheetData  a         rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Sheet data"@en ;
+        rdfs:subClassOf  rdfs:Resource , cex:SheetData , skos:Concept .
+
+dqv:qualityAssessment
+        a                oa:Motivation ;
+        skos:closeMatch  oa:moderating ;
+        skos:definition  "Motivation that must be specified for quality annotations"@en ;
+        skos:prefLabel   "Quality assessment"@en .
+
+qb:structure  a           rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment      "indicates the structure to which this data set conforms"@en ;
+        rdfs:domain       qb:DataSet ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "structure"@en ;
+        rdfs:range        qb:DataStructureDefinition ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+dqv:hasQualityMeasurement
+        a              rdf:Property ;
+        rdfs:comment   "Refers to the performed quality measurements. Quality measurements can be performed to any kind of resource (e.g., a dataset, a linkset, a graph, a set of triples). However, in the DQV context, this property is generally expected to be used in statements in which subjects are instances of dcat:Dataset and dcat:Distribution."@en ;
+        rdfs:label     "has quality measurement"@en ;
+        rdfs:range     dqv:QualityMeasurement ;
+        owl:inverseOf  dqv:computedOn .
+
+rdf:predicate  a            rdfs:Resource , rdf:Property ;
+        rdfs:domain         rdf:Statement ;
+        rdfs:subPropertyOf  rdf:predicate .
+
+qb:DimensionProperty  a   rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:comment      "The class of components which represent the dimensions of the cube"@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Dimension property"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   rdfs:Resource , qb:ComponentProperty , qb:DimensionProperty , qb:CodedProperty , rdf:Property ;
+        owl:disjointWith  qb:MeasureProperty .
+
+cex:Filter  a            rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Value copied from other observation"@en ;
+        rdfs:subClassOf  rdfs:Resource , cex:Filter , cex:Computation .
+
+cex:HighLow  a           rdfs:Resource , rdfs:Class , skos:Concept ;
+        rdfs:label       "High/Low"@en ;
+        rdfs:subClassOf  cex:HighLow , rdfs:Resource .
+
+ex:testChecking  a            dqv:Metric ;
+        skos:definition       "a metric performing a test XXX and returning the test result as described in EARL"@en ;
+        dqv:expectedDataType  xsd:anyURI ;
+        dqv:hasObservation    ex:testChecking2 , ex:testChecking1 ;
+        dqv:inDimension       ex:iteroperability .
+
+cex:RankingScore  a      rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Ranking Score"@en ;
+        rdfs:subClassOf  rdfs:Resource , cex:RankingScore , cex:Indicator .
+
+qb:ComponentSpecification
+        a                 rdfs:Class , rdfs:Resource , owl:Class ;
+        rdfs:comment      "Used to define properties of a component (attribute, dimension etc) which are specific to its usage in a DSD."@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Component specification"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   rdfs:Resource , qb:ComponentSpecification , qb:ComponentSet .
+
+scovo:Item  a                owl:Class ;
+        owl:equivalentClass  qb:Observation .
+
+cex:AverageGrowth  a     rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Impute a value as the average growth of a list of values"@en ;
+        rdfs:subClassOf  cex:AverageGrowth , cex:Computation , rdfs:Resource .
+
+qb:measure  a               owl:ObjectProperty , rdf:Property , rdfs:Resource ;
+        rdfs:comment        "An alternative to qb:componentProperty which makes explicit that the component is a measure"@en ;
+        rdfs:isDefinedBy    <http://purl.org/linked-data/cube> ;
+        rdfs:label          "measure"@en ;
+        rdfs:range          qb:MeasureProperty ;
+        rdfs:seeAlso        <http://purl.org/linked-data/cube> ;
+        rdfs:subPropertyOf  qb:measure , qb:componentProperty .
+
+dqv:inDimension  a      rdf:Property ;
+        rdfs:comment    "Represents the dimension a metric allows a measurement of."@en ;
+        rdfs:label      "in dimension"@en ;
+        rdfs:range      dqv:Dimension ;
+        vann:usageNote  "Dimensions are meant to systematically organize metrics. The Data Quality Vocabulary define no specific cardinality constraints for dqv:hasDimension, since distinct quality frameworks might have different perspectives over a metric. A metric may therefore be associated to more than one dimension. However, those who define new quality measures should try to avoid this as much as possible and assign only one dimension to the metrics they define."@en .
+
+qb:codeList  a            rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment      "gives the code list associated with a CodedProperty"@en ;
+        rdfs:domain       qb:CodedProperty ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "code list"@en ;
+        rdfs:range        _:b0 ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+qb:slice  a                 owl:ObjectProperty , rdfs:Resource , rdf:Property ;
+        rdfs:comment        "Indicates a subset of a DataSet defined by fixing a subset of the dimensional values"@en ;
+        rdfs:domain         qb:DataSet ;
+        rdfs:isDefinedBy    <http://purl.org/linked-data/cube> ;
+        rdfs:label          "slice"@en ;
+        rdfs:range          qb:Slice ;
+        rdfs:seeAlso        <http://purl.org/linked-data/cube> ;
+        rdfs:subPropertyOf  qb:observationGroup , qb:slice .
+
+rdf:Statement  a         rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  rdfs:Resource .
+
+cex:Ranked  a         cex:ObsStatus ;
+        rdfs:comment  "Data values that have been obtained by ranking their position."@en ;
+        rdfs:label    "Ranked data"@en .
+
+rdfs:isDefinedBy  a         rdfs:Resource , rdf:Property ;
+        rdfs:subPropertyOf  rdfs:seeAlso , rdfs:isDefinedBy .
+
+xsd:int  a               rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  xsd:int , rdfs:Resource .
+
+qb:sliceStructure  a      rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment      "indicates the sub-key corresponding to this slice"@en ;
+        rdfs:domain       qb:Slice ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "slice structure"@en ;
+        rdfs:range        qb:SliceKey ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+cex:WeightedMean  a      rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Weighted mean using a weightSchema"@en ;
+        rdfs:subClassOf  cex:WeightedMean , cex:Computation , rdfs:Resource .
+
+dqv:QualityPolicy  a  rdfs:Class , owl:Class ;
+        rdfs:comment  "Represents a policy or agreement that is chiefly governed by data quality concerns."@en ;
+        rdfs:label    "Quality policy"@en .
+
+cex:errorParam  a    rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:domain  cex:Error ;
+        rdfs:range   cex:ErrorParam .
+
+dqv:isMeasurementOf  a          qb:DimensionProperty , rdf:Property ;
+        rdfs:comment            "Indicates the metric being observed."@en ;
+        rdfs:domain             qb:Observation ;
+        rdfs:label              "is measurement of"@en ;
+        rdfs:range              dqv:Metric ;
+        owl:equivalentProperty  daq:metric .
+
+cex:Normalized  a     cex:ObsStatus ;
+        rdfs:comment  "Data values that have been normalized. Usually by z-scores"@en ;
+        rdfs:label    "Normalized data"@en .
+
+owl:Class  a    rdfs:Resource , rdfs:Class .
+
+<http://purl.org/weso/ontology/computex>
+        a                    owl:Ontology ;
+        rdfs:comment         "Vocabulary for describing index structures and observations."@en ;
+        rdfs:label           "Computational Index ontology"@en ;
+        dcterms:author       wf-people:Chema , wf-people:Labra , wf-org:WESO ;
+        dcterms:contributor  wf-people:Hania , wf-people:Chema , wf-people:Jules , wf-org:WESO , wf-people:Labra ;
+        dcterms:created      "2012-06-07"^^xsd:date ;
+        dcterms:license      <http://www.opendatacommons.org/licenses/pddl/1.0/> ;
+        dcterms:modified     "2013-06-07"^^xsd:date ;
+        dcterms:publisher    wf-org:WebFoundation ;
+        dcterms:title        "Core Computational Index ontology"@en ;
+        owl:versionInfo      "0.2" .
+
+cex:Index  a             rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:label       "Índice"@es , "Index"@en ;
+        rdfs:subClassOf  cex:Index , rdfs:Resource .
+
+qb:Attachable  a          rdfs:Resource , rdfs:Class , owl:Class ;
+        rdfs:comment      "Abstract superclass for everything that can have attributes and dimensions"@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Attachable (abstract)"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   qb:Attachable .
+
+cex:Raw  a               rdfs:Class , owl:Class , cex:ObsStatus , rdfs:Resource ;
+        rdfs:comment     "Raw data values that have been collected from a datasource without any normalisation process."@en ;
+        rdfs:label       "Raw data"@en , "Raw value, not computed"@en ;
+        rdfs:subClassOf  rdfs:Resource , cex:Computation , cex:Raw .
+
+dqv:UserQualityFeedback
+        a                rdfs:Class , owl:Class ;
+        rdfs:comment     "Represents feedback users might want to associate to datasets or distributions. Besides dqv:qualityAssessment which is the motivation required by all quality annotations, one of the predefined instances of oa:Motivation should be indicated as motivation to distinguish among the different kinds of feedback, e.g, classifications, questions."@en ;
+        rdfs:label       "User Quality feedback"@en ;
+        rdfs:subClassOf  duv:UserFeedback , dqv:QualityAnnotation .
+
+cex:msg  a          owl:DatatypeProperty ;
+        rdfs:label  "Message"@en .
+
+qb:observationGroup  a      rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment        "Indicates a group of observations. The domain of this property is left open so that a group may be attached to different resources and need not be restricted to a single DataSet"@en ;
+        rdfs:isDefinedBy    <http://purl.org/linked-data/cube> ;
+        rdfs:label          "observation group"@en ;
+        rdfs:range          qb:ObservationGroup ;
+        rdfs:seeAlso        <http://purl.org/linked-data/cube> ;
+        rdfs:subPropertyOf  qb:observationGroup .
+
+qb:MeasureProperty  a     owl:Class , rdfs:Resource , rdfs:Class ;
+        rdfs:comment      "The class of components which represent the measured value of the phenomenon being observed"@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Measure property"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   rdfs:Resource , qb:ComponentProperty , qb:MeasureProperty , rdf:Property .
+
+cex:Computed  a       cex:ObsStatus ;
+        rdfs:comment  "Data values that have been computed by some algorithm."@en ;
+        rdfs:label    "Computed data"@en .
+
+rdfs:Literal  a          rdfs:Resource , rdfs:Class ;
+        rdfs:subClassOf  rdfs:Resource .
+
+cex:ObsStatus  a  rdfs:Resource , rdfs:Class .
+
+qb:componentAttachment
+        a                 rdfs:Resource , rdf:Property , owl:ObjectProperty ;
+        rdfs:comment      "Indicates the level at which the component property should be attached, this might an qb:DataSet, qb:Slice or qb:Observation, or a qb:MeasureProperty."@en ;
+        rdfs:domain       qb:ComponentSpecification ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "component attachment"@en ;
+        rdfs:range        rdfs:Class ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> .
+
+rdfs:Class  a            rdfs:Resource , owl:Class , rdfs:Class ;
+        rdfs:subClassOf  rdfs:Class , rdfs:Resource .
+
+qb:ComponentProperty  a   owl:Class , rdfs:Class , rdfs:Resource ;
+        rdfs:comment      "Abstract super-property of all properties representing dimensions, attributes or measures"@en ;
+        rdfs:isDefinedBy  <http://purl.org/linked-data/cube> ;
+        rdfs:label        "Component property (abstract)"@en ;
+        rdfs:seeAlso      <http://purl.org/linked-data/cube> ;
+        rdfs:subClassOf   rdf:Property , rdfs:Resource , qb:ComponentProperty .
+
+rdf:rest  a                 rdfs:Resource , rdf:Property ;
+        rdfs:domain         rdf:List ;
+        rdfs:range          rdf:List ;
+        rdfs:subPropertyOf  rdf:rest .
+
+cex:Cluster  a           rdfs:Class , owl:Class , rdfs:Resource , cex:ObsStatus ;
+        rdfs:comment     "Data values that have been clustered by the value of one dimension"@en ;
+        rdfs:label       "Cluster a dataset by copying only the values of some dimension"@en , "Cluster data"@en ;
+        rdfs:subClassOf  cex:Cluster , rdfs:Resource , cex:Computation .
+
+cex:Component  a         owl:Class , rdfs:Resource , rdfs:Class ;
+        rdfs:comment     "A component is an aggregation of several indicators" ;
+        rdfs:label       "Component"@en , "Component" , "Componente"@es ;
+        rdfs:subClassOf  cex:Component , rdfs:Resource ;
+        skos:broader     cex:SubIndex .
+
+rdfs:label  a       rdfs:Resource , rdf:Property ;
+        rdfs:range  rdfs:Literal .
+
+cex:Param  a             rdfs:Resource , owl:Class , rdfs:Class ;
+        rdfs:label       "Parameter"@en ;
+        rdfs:subClassOf  cex:Param , rdfs:Resource .
