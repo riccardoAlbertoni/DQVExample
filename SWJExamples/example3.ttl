@@ -1,0 +1,44 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dqv:   <http://www.w3.org/ns/dqv#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix ldqd: <https://www.w3.org/2016/05/ldqd> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix : <http://example.org/> .
+@prefix sdmx-attribute:  <http://purl.org/linked-data/sdmx/2009/attribute#> .
+@prefix qb: <http://purl.org/linked-data/cube#>
+
+# Associating measurements to a Quality Measurement Dataset 
+:measurement1 qb:dataSet :linksetQualityMeasurements .
+:measurement2 qb:dataSet :linksetQualityMeasurements .
+
+#Definining the Quality Measurement Dataset
+:linksetQualityMeasurements a 
+dqv:QualityMeasurementDataset ;
+qb:structure  :dsd .
+
+#Definition of a Data Cube structure 
+:dsd a qb:DataStructureDefinition ;
+## Expressing Data Cube dimensions
+      qb:component [ 
+qb:dimension  dqv:isMeasurementOf ;
+qb:order      1
+] ;
+      qb:component [
+ qb:dimension  dqv:computedOn ;
+ qb:order      2
+] ;
+      qb:component [ 
+qb:dimension  dcterms:date ;
+qb:order      3
+] ;
+## Expressing the Data Cube measure 
+     qb:component [ qb:measure  dqv:value ; ] ;
+## Expressing the Data Cube attribute (here, unit of measurement)
+      qb:component [
+ qb:attribute sdmx-attribute:unitMeasure ;
+ qb:componentRequired false ;
+ qb:componentAttachment qb:DataSet
+] .
