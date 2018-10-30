@@ -16,6 +16,8 @@
 @prefix prov: <http://www.w3.org/ns/prov#>
 @prefix foaf: <http://xmlns.com/foaf/0.1/>
 
+#a DCAT catalog record can be said to be conformant with the GeoDCAT-AP standard.
+
 :myDataset a dcat:Dataset .
 
 :myDatasetRecord a dcat:CatalogRecord ;
