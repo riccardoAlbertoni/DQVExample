@@ -1,0 +1,46 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dqv:   <http://www.w3.org/ns/dqv#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix ldqd: <https://www.w3.org/2016/05/ldqd> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix : <http://example.org/> .
+@prefix sdmx-attribute:  <http://purl.org/linked-data/sdmx/2009/attribute#> .
+@prefix qb: <http://purl.org/linked-data/cube#>
+@prefix oa: <http://www.w3.org/ns/oa#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>
+@prefix prov: <http://www.w3.org/ns/prov#>
+
+:serviceProvider a odrl:Party .
+
+:myDataset a  dcat:Dataset ;
+  dcat:distribution :myDatasetSparqlDistribution .
+:myDatasetSparqlDistribution a dcat:Distribution .
+
+:policy1 a odrl:Offer, dqv:QualityPolicy ;
+    dqv:inDimension ldqd:availability ;
+  odrl:permission [
+    a odrl:Permission ;
+    odrl:target :myDataset ;
+    odrl:action odrl:read ;
+    odrl:assigner :serviceProvider;    
+    odrl:duty [
+      a odrl:Duty; 
+      odrl:assignee :serviceProvider;
+      odrl:target :myDatasetSparqlDistribution ;
+      odrl:constraint [
+        a odrl:Constraint ;
+        prov:wasDerivedFrom :sparqlEndpointUptime;
+        odrl:leftOperand odrl:percentage ;
+        odrl:operator odrl:gteq ;
+        odrl:rightOperand "99"^^xsd:double ;
+      ]     
+    ]
+  ]
+
+
+
