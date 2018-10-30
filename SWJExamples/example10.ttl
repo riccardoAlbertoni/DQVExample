@@ -1,0 +1,35 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dqv:   <http://www.w3.org/ns/dqv#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix ldqd: <https://www.w3.org/2016/05/ldqd> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix : <http://example.org/> .
+@prefix sdmx-attribute:  <http://purl.org/linked-data/sdmx/2009/attribute#> .
+@prefix qb: <http://purl.org/linked-data/cube#>
+@prefix oa: <http://www.w3.org/ns/oa#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>
+@prefix prov: <http://www.w3.org/ns/prov#>
+@prefix foaf: <http://xmlns.com/foaf/0.1/>
+
+#The example shows how DQV model this derivation at the metric and measurement level reusing the property prov:wasDerivedFrom.
+
+:datasetAvailabilityMetric 
+    a dqv:Metric ;
+    prov:wasDerivedFrom :downloadURLAvailabilityMetric, :SPARQLAvailabilityMetric;
+    skos:definition "Checks the availabitity of the specified distributions. A dataset is available if at least one of its distribution is available."@en ;
+    dqv:expectedDataType xsd:boolean ;
+    dqv:inDimension :ldqd:availability .
+
+:measurement4 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :myDataset ;
+    dqv:isMeasurementOf :datasetAvailabilityMetric ;
+    prov:wasDerivedFrom :measurement1, :measurement3 ;
+    dqv:value "false"^^xsd:boolean .
+
+
