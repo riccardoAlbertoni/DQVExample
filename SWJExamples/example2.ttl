@@ -1,0 +1,79 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dqv:   <http://www.w3.org/ns/dqv#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix ldqd: <https://www.w3.org/2016/05/ldqd> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix : <http://example.org/> .
+@prefix sdmx-attribute:  <http://purl.org/linked-data/sdmx/2009/attribute#> .
+
+# Definition of a Dataset and its Distribution 
+:myDataset 
+    a dcat:Dataset ;
+    dcterms:title "My dataset" ; 
+    dcat:distribution :myCSVDatasetDistribution, 
+:mySPARQLDatasetDistribution .
+
+:mySPARQLDatasetDistribution
+    a dcat:Distribution ;
+    dcat:accessURL <http://www.example.org/sparql> ;
+    dcterms:title "SPARQL access to the dataset" ;
+    dcat:mediaType "application/sparql-results+json" .
+
+:myCSVDatasetDistribution
+    a dcat:Distribution ;
+    dcat:downloadURL 
+<http://www.example.org/files/mydataset.csv> ;
+    dcterms:title "CSV distribution of dataset" ;
+    dcat:mediaType "text/csv" ;
+    dcat:byteSize "87120"^^xsd:decimal .
+
+#Definition of Metrics
+:populationCompletenessMetric
+    a dqv:Metric ;
+    skos:definition "Ratio between the number of objects represented in the dataset and the number of objects expected to be represented according to the declared dataset scope."@en ;
+    dqv:inDimension ldqd:completeness ;
+    dqv:expectedDataType xsd:decimal .
+
+:sparqlAvailabilityMetric
+    a dqv:Metric ;
+    skos:definition "It checks if a void:sparqlEndpoint is specified for a distribution and if the server responds to a SPARQL query."@en ;
+    dqv:inDimension ldqd:availability ;
+    dqv:expectedDataType xsd:boolean.
+
+:downloadURLAvailabilityMetric 
+    a dqv:Metric ;
+    skos:definition "Checks if dcat:downloadURL is available and if its value is dereferenceable."@en ;
+    dqv:inDimension ldqd:availability ;
+    dqv:expectedDataType xsd:boolean .
+    
+
+#Actual metric values
+:mySPARQLDatasetDistribution
+     dqv:hasQualityMeasurement :measurement1 .
+
+:myDataset dqv:hasQualityMeasurement :measurement2 .
+
+:myCSVDatasetDistribution dqv:hasQualityMeasurement 
+:measurement3 .
+
+:measurement1
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :mySPARQLDatasetDistribution ;
+    dqv:isMeasurementOf :SPARQLAvailabilityMetric ;
+    dqv:value "true"^^xsd:boolean .       
+
+:measurement2 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :myDataset ;
+    dqv:isMeasurementOf :populationCompletenessMetric;
+    sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Percentage>;
+    dqv:value "90.0"^^xsd:decimal .
+
+:measurement3 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :myCSVDatasetDistribution ;
+    dqv:isMeasurementOf :downloadURLAvailabilityMetric ;
+    dqv:value "false"^^xsd:boolean .

@@ -1,0 +1,29 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dqv:   <http://www.w3.org/ns/dqv#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix ldqd: <https://www.w3.org/2016/05/ldqd> .
+
+# Definition of dimensions
+ldqd:availability
+	a dqv:Dimension ; 
+	dqv:inCategory ldqd:accessibilityDimensions ;
+	skos:prefLabel "Availability"@en ;
+	skos:definition "Availability of a dataset is the extent to which data (or some portion of it) is present, obtainable and ready for use."@en .
+
+ldqd:completeness	
+	a dqv:Dimension ; 
+	dqv:inCategory ldqd:intrinsicDimensions ;
+	skos:prefLabel "Completeness"@en;
+	skos:definition "Completeness refers to the degree to which all required information is present in a particular dataset."@en .
+
+# Definition of categories
+ldqd:accessibilityDimensions a dqv:Category ; 
+	skos:prefLabel "Accessibility"@en . 
+
+ldqd:intrinsicDimensions a dqv:Category ; 
+skos:prefLabel "Intrinsic dimensions"@en .
+
+# Relations between dimensions
+ldqd:completeness skos:related ldqd:conciseness, ldqd:semanticAccuracy .
