@@ -1,0 +1,83 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dqv:   <http://www.w3.org/ns/dqv#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix ldqd: <https://www.w3.org/2016/05/ldqd> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix : <http://example.org/> .
+@prefix sdmx-attribute:  <http://purl.org/linked-data/sdmx/2009/attribute#> .
+@prefix qb: <http://purl.org/linked-data/cube#>
+@prefix oa: <http://www.w3.org/ns/oa#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>
+@prefix prov: <http://www.w3.org/ns/prov#>
+@prefix foaf: <http://xmlns.com/foaf/0.1/>
+
+# linking dataset and distribution to the quality metadata
+:myDataset dqv:hasQualityMetadata :myQualityMetadata.
+
+:mySPARQLDatasetDistribution dqv:hasQualityMetadata 
+  :myQualityMetadata .
+
+:myCSVDatasetDistribution dqv:hasQualityMetadata
+ :myQualityMetadata.
+
+# :myQualityMatadata is a graph 
+:myQualityMetadata {
+
+:measurement1
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :mySPARQLDatasetDistribution ;
+    dqv:isMeasurementOf :SPARQLAvailabilityMetric ;
+    dqv:value "true"^^xsd:boolean .       
+
+  :measurement2 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :myDataset ;
+    dqv:isMeasurementOf :populationCompletenessMetric ;
+    sdmx-attribute:unitMeasure <http://www.wurvoc.org/vocabularies/om-1.8/Percentage> ;
+    dqv:value "90.0"^^xsd:decimal .
+
+:measurement3 
+    a dqv:QualityMeasurement ;
+    dqv:computedOn :myCSVDatasetDistribution ;
+    dqv:isMeasurementOf :downloadURLAvailabilityMetric ;
+    dqv:value "false"^^xsd:boolean .
+
+:classificationOfmyDataset  
+    a dqv:UserQualityFeedback ;
+    oa:hasTarget  :myDataset ;
+    oa:hasBody :four_stars ; 
+    oa:motivatedBy dqv:qualityAssessment, oa:classifying ;
+    dqv:inDimension ldqd:availability .
+}
+
+# :myQualityMetadata has been created by :myQualityChecker and it is the result of the :myQualityChecking activity
+
+:myQualityMetadata 
+    a dqv:QualityMetadata ;
+    prov:wasAttributedTo :myQualityChecker ;
+    prov:generatedAtTime "2015-05-27T02:52:02Z"^^xsd:dateTime ;
+    prov:wasGeneratedBy :myQualityChecking .
+
+# :myQualityChecker is a service computing some quality metrics 	
+
+:myQualityChecker
+    a prov:SoftwareAgent ;   
+    rdfs:label "A quality assessment service"^^xsd:string .
+
+# Further details about quality service/software can be provided, for example, deploying  vocabularies such as Dataset Usage Vocabulary (DUV), Dublin Core or ADMS.SW
+
+# :myQualityChecking is the activity that has generated :myQualityMetadata from  :myDatasetDistribution
+
+:myQualityChecking
+    a prov:Activity;
+    rdfs:label "The checking of :myDataset and its distributions quality"^^xsd:string;
+    prov:wasAssociatedWith :myQualityChecker;
+    prov:used   :myDataset, :mySPARQLDatasetDistribution, :myCSVDatasetDistribution ;
+    prov:generated  :myQualityMetadata;
+    prov:endedAtTime "2015-05-27T02:52:02Z"^^xsd:dateTime;
+    prov:startedAtTime "2015-05-27T00:52:02Z"^^xsd:dateTime .
