@@ -10,5 +10,5 @@ The examples included in this directory are described in the  Data Quality Vocab
 * example 7: [expressing that a data provider grants the permission to access a dataset and commits to serve the data with a certain quality](./example7.ttl)
 * example 8: [expressing that DCAT catalog record can be said to be conformant with the GeoDCAT-AP standard](./example8.ttl)
 * example 9: [expressing provenance using quality metadata](./example9.trig)
-* example 10: [DQV model this derivation at the metric and measurement level reusing the property prov:wasDerivedFrom](./example10.ttl)
+* example 10: [expressing derivation at the metric and measurement level reusing the property prov:wasDerivedFrom](./example10.ttl)
 
