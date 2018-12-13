@@ -12,21 +12,21 @@
 # Definition of a Dataset and its Distribution 
 :myDataset 
     a dcat:Dataset ;
-    dcterms:title "My dataset" ; 
+    dcterms:title "My dataset"@en ; 
     dcat:distribution :myCSVDatasetDistribution, 
 :mySPARQLDatasetDistribution .
 
 :mySPARQLDatasetDistribution
     a dcat:Distribution ;
     dcat:accessURL <http://www.example.org/sparql> ;
-    dcterms:title "SPARQL access to the dataset" ;
+    dcterms:title "SPARQL access to the dataset"@en ;
     dcat:mediaType "application/sparql-results+json" .
 
 :myCSVDatasetDistribution
     a dcat:Distribution ;
     dcat:downloadURL 
 <http://www.example.org/files/mydataset.csv> ;
-    dcterms:title "CSV distribution of dataset" ;
+    dcterms:title "CSV distribution of dataset"@en ;
     dcat:mediaType "text/csv" ;
     dcat:byteSize "87120"^^xsd:decimal .
 
@@ -41,7 +41,7 @@
     a dqv:Metric ;
     skos:definition "It checks if a void:sparqlEndpoint is specified for a distribution and if the server responds to a SPARQL query."@en ;
     dqv:inDimension ldqd:availability ;
-    dqv:expectedDataType xsd:boolean.
+    dqv:expectedDataType xsd:boolean .
 
 :downloadURLAvailabilityMetric 
     a dqv:Metric ;
